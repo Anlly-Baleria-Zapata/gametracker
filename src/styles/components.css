@@ -1,0 +1,104 @@
+@import './variables.css';
+@import './global.css';
+
+/* BibliotecaJuegos */
+.biblioteca {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.biblioteca-header {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.biblioteca-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+/* TarjetaJuego */
+.tarjeta-juego {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.tarjeta-juego:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.tarjeta-juego .imagen {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.2));
+}
+.tarjeta-juego img { width: 100%; height: 100%; object-fit: cover; display:block; }
+.tarjeta-juego .titulo { font-weight: 700; font-size: 15px; color: var(--text); }
+.tarjeta-juego .meta { font-size: 13px; color: var(--muted); display:flex; justify-content: space-between; align-items:center; }
+.tarjeta-juego .actions { display:flex; gap: 8px; }
+
+/* FormularioJuego */
+.form-juego { width: 100%; max-width: 820px; display:flex; flex-direction:column; gap:12px; }
+.form-row { display:flex; gap:12px; }
+.form-row .col { flex:1; }
+.form-actions { display:flex; justify-content: flex-end; gap:10px; margin-top: 6px; }
+
+/* ListaReseñas */
+.lista-resenas { display:flex; flex-direction:column; gap:12px; }
+.resena {
+  display:flex;
+  gap:12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.02);
+}
+.resena .avatar {
+  width:44px; height:44px; border-radius: 50%; background: var(--glass); flex-shrink:0;
+}
+.resena .body { flex:1; }
+.resena .meta { display:flex; justify-content:space-between; align-items:center; gap:8px; color:var(--muted); font-size:13px; }
+
+/* FormularioReseña */
+.form-resena { display:flex; flex-direction:column; gap:8px; }
+.form-resena textarea { min-height:100px; resize:vertical; }
+
+/* EstadisticasPersonales */
+.estadisticas {
+  display:grid;
+  grid-template-columns: 1fr 320px;
+  gap:16px;
+}
+.stats-cards {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+  gap:12px;
+}
+.stat-card {
+  padding: 12px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  text-align: left;
+}
+.stat-value { font-size: 22px; font-weight: 800; color: var(--text); }
+.stat-label { font-size: 13px; color: var(--muted); }
+
+/* Chart container placeholder */
+.chart {
+  height: 220px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .estadisticas { grid-template-columns: 1fr; }
+  .app-container { padding: 12px; }
+}

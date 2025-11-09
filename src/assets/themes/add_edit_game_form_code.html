@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Edit Game Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Add/Edit Game</h1>
+        <form id="game-form">
+            <label for="game-title">Game Title:</label>
+            <input type="text" id="game-title" name="game-title" required>
+
+            <label for="game-genre">Genre:</label>
+            <input type="text" id="game-genre" name="game-genre" required>
+
+            <label for="game-description">Description:</label>
+            <textarea id="game-description" name="game-description" required></textarea>
+
+            <label for="game-release-date">Release Date:</label>
+            <input type="date" id="game-release-date" name="game-release-date" required>
+
+            <button type="submit">Save Game</button>
+        </form>
+    </div>
+</body>
+</html>

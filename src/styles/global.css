@@ -1,0 +1,97 @@
+@import './variables.css';
+
+/* Reset + base */
+* { box-sizing: border-box; }
+html,body,#root { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: linear-gradient(180deg, #061024 0%, #071428 60%);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+  padding: 24px;
+}
+
+/* Layout container */
+.app-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  gap: var(--gap);
+  align-items: flex-start;
+}
+
+/* Cards & utilities */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text);
+  font-weight: 600;
+}
+.btn-primary {
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  color: #022435;
+  box-shadow: 0 6px 18px rgba(36,138,255,0.12);
+}
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Inputs */
+.input, textarea, select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--glass);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.03);
+  outline: none;
+}
+.input:focus, textarea:focus, select:focus {
+  box-shadow: 0 6px 18px rgba(36,138,255,0.08);
+  border-color: rgba(96,165,250,0.6);
+}
+
+/* Headings */
+.h1 { font-size: 20px; margin: 0; font-weight: 700; }
+.h2 { font-size: 16px; margin: 0; font-weight: 700; color: var(--muted); }
+
+/* Small helpers */
+.muted { color: var(--muted); font-size: 13px; }
+.chip {
+  background: rgba(255,255,255,0.03);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text);
+}
