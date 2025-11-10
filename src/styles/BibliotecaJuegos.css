@@ -1,0 +1,167 @@
+.biblioteca-juegos {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.biblioteca-juegos__titulo {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.biblioteca-juegos__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 tarjetas por fila */
+  gap: 2rem; /* espacio entre tarjetas */
+}
+
+.busqueda-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.busqueda-input {
+  width: 300px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 2px solid #4f46e5;
+  border-radius: 8px;
+  outline: none;
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.busqueda-input:focus {
+  border-color: #3730a3;
+  box-shadow: 0 0 8px rgba(79, 70, 229, 0.5);
+}
+
+/* Mensaje cuando no hay resultados */
+.sin-resultados {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}
+
+.biblioteca-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.biblioteca-header h1 {
+  font-size: 24px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.busqueda-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Icono de lupa */
+.lupa {
+  margin-right: 8px;
+  font-size: 18px;
+  color: #888;
+}
+
+/* Input de búsqueda */
+.busqueda-juegos {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+}
+
+.cantidad-juegos {
+  font-size: 18px;
+  color: #666;
+}
+
+.boton-filtros {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: 15px;
+}
+
+.boton-filtros:hover {
+  background-color: #357abd;
+}
+
+/* Panel de filtros */
+.filtros-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.filtros-panel input,
+.filtros-panel select {
+  flex: 1;
+  min-width: 150px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #122646e8;
+}
+
+
+@media (max-width: 1024px) {
+  .biblioteca-juegos__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .biblioteca-juegos__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .biblioteca-juegos__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 600px) {
+  .biblioteca-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (min-width: 700px) {
+  .biblioteca-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .busqueda-wrapper {
+    max-width: 350px;
+  }
+}

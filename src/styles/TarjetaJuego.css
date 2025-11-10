@@ -1,0 +1,72 @@
+.tarjeta-juego {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  /* Tamaño fijo para todas las tarjetas */
+  width: 220px;      /* ancho fijo */
+  height: 320px;     /* altura fija */
+}
+
+.tarjeta-juego:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Imagen de fondo ocupando toda la tarjeta */
+.tarjeta-juego__imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Barra inferior semitransparente */
+.tarjeta-juego__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px; /* separación entre título y botón */
+}
+
+/* Título arriba del botón */
+.tarjeta-juego__titulo {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+
+/* Botón */
+.tarjeta-juego__boton {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.tarjeta-juego__boton:hover {
+  background-color: #3730a3;
+  transform: translateY(-2px);
+}
+
+/* Grid de 4 tarjetas por fila */
+.biblioteca-juegos .juegos-lista {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-content: center; /* centra la cuadrícula */
+  padding: 20px 0;
+}
