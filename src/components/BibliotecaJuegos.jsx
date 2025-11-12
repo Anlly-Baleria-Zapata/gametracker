@@ -1,9 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import TarjetaJuego from './TarjetaJuego';
 import useGames from '../hooks/useGames';
-import { Link } from 'react-router-dom';
 import '../styles/BibliotecaJuegos.css';
-import { FaGamepad, FaListAlt, FaPenFancy, FaPlusSquare, FaChartPie } from 'react-icons/fa'; // 🎨 Íconos
 
 const BibliotecaJuegos = () => {
   const { games } = useGames();
@@ -12,15 +10,34 @@ const BibliotecaJuegos = () => {
   const [filters, setFilters] = useState({
     genero: '',
     plataforma: '',
-    añoLanzamiento: '',
+    anioLanzamiento: '',
     desarrollador: '',
     completado: ''
   });
 
+  // Función para limpiar filtros
+  const resetFilters = () => {
+    setFilters({
+      genero: '',
+      plataforma: '',
+      anioLanzamiento: '',
+      desarrollador: '',
+      completado: ''
+    });
+  };
+
+  // Alternar visibilidad del panel de filtros
+  const toggleFilters = () => {
+    if (showFilters) {
+      resetFilters(); // 🔹 Limpia los filtros al ocultar el panel
+    }
+    setShowFilters(!showFilters);
+  };
+
   // Listas únicas
   const generos = useMemo(() => [...new Set(games.map(g => g.genero).filter(Boolean))], [games]);
   const plataformas = useMemo(() => [...new Set(games.map(g => g.plataforma).filter(Boolean))], [games]);
-  const años = useMemo(() => [...new Set(games.map(g => g.añoLanzamiento).filter(Boolean))].sort((a, b) => b - a), [games]);
+  const años = useMemo(() => [...new Set(games.map(g => g.anioLanzamiento).filter(Boolean))].sort((a, b) => b - a), [games]);
   const desarrolladores = useMemo(() => [...new Set(games.map(g => g.desarrollador).filter(Boolean))], [games]);
 
   // Filtro
@@ -28,7 +45,7 @@ const BibliotecaJuegos = () => {
     const matchesSearch = juego.titulo.toLowerCase().includes(search.toLowerCase());
     const matchesGenero = filters.genero ? juego.genero === filters.genero : true;
     const matchesPlataforma = filters.plataforma ? juego.plataforma === filters.plataforma : true;
-    const matchesAño = filters.añoLanzamiento ? juego.añoLanzamiento === Number(filters.añoLanzamiento) : true;
+    const matchesAño = filters.anioLanzamiento ? juego.anioLanzamiento === Number(filters.anioLanzamiento) : true;
     const matchesDesarrollador = filters.desarrollador ? juego.desarrollador === filters.desarrollador : true;
     const matchesCompletado =
       filters.completado === ''
@@ -48,29 +65,7 @@ const BibliotecaJuegos = () => {
   });
 
   return (
-    <div className="layout-container">
-      {/* === BARRA LATERAL === */}
-      <aside className="sidebar">
-        <h2 className="sidebar-title">🎮 Mi Panel</h2>
-        <nav className="sidebar-nav">
-          <Link to="/" className="sidebar-item active">
-            <FaGamepad className="sidebar-icon" /> Biblioteca
-          </Link>
-          <Link to="/reviews" className="sidebar-item">
-            <FaListAlt className="sidebar-icon" /> Lista de Reseñas
-          </Link>
-          <Link to="/edit-review/:id" className="sidebar-item">
-            <FaPenFancy className="sidebar-icon" /> Formulario Reseña
-          </Link>
-          <Link to="/add-game" className="sidebar-item">
-            <FaPlusSquare className="sidebar-icon" /> Formulario Juego
-          </Link>
-          <Link to="/statistics" className="sidebar-item">
-            <FaChartPie className="sidebar-icon" /> Estadísticas
-          </Link>
-        </nav>
-      </aside>
-
+    <div>
       {/* === CONTENIDO PRINCIPAL === */}
       <main className="biblioteca-juegos">
         <div className="biblioteca-header">
@@ -90,7 +85,7 @@ const BibliotecaJuegos = () => {
             />
           </div>
 
-          <button className="boton-filtros" onClick={() => setShowFilters(!showFilters)}>
+          <button className="boton-filtros" onClick={toggleFilters}>
             {showFilters ? '▲ Ocultar Filtros' : '🔽 Mostrar Filtros'}
           </button>
         </div>
@@ -111,7 +106,7 @@ const BibliotecaJuegos = () => {
               ))}
             </select>
 
-            <select value={filters.añoLanzamiento} onChange={(e) => setFilters({ ...filters, añoLanzamiento: e.target.value })}>
+            <select value={filters.anioLanzamiento} onChange={(e) => setFilters({ ...filters, anioLanzamiento: e.target.value })}>
               <option value="">Todos los años</option>
               {años.map((a) => (
                 <option key={a} value={a}>{a}</option>
