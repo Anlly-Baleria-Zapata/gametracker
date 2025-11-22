@@ -11,7 +11,7 @@ const TarjetaJuego = ({ juego }) => {
   };
 
   const handleEditarResena = () => {
-    navigate(`/add-review/${juego.id}`); // ruta hacia el formulario de reseña
+    navigate(`/add-review/${juego._id}`);
   };
 
   return (

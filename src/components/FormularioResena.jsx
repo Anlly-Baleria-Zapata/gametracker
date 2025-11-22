@@ -11,23 +11,28 @@ const FormularioResena = () => {
 const [reviewData, setReviewData] = useState({
   puntuacion: 0,
   textoResenia: "", // cambié el nombre para coincidir con el backend
-  horasJugadas: 1,  // valor inicial
   dificultad: "Normal",
   recomendaria: false,
+  horasJugadas: 1,  // valor inicial
 });
 
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setReviewData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
+const handleChange = (e) => {
+  const { name, value, type, checked } = e.target;
+  setReviewData((prev) => ({
+    ...prev,
+    [name]:
+      type === "checkbox"
+        ? checked
+        : name === "horasJugadas"
+        ? Number(value) // convertimos a número
+        : value,
+  }));
+};
 
-  const handleStarClick = (valor) => {
-    setReviewData((prev) => ({ ...prev, puntuacion: valor }));
-  };
+const handleStarClick = (valor) => {
+  setReviewData((prev) => ({ ...prev, puntuacion: valor }));
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,8 +67,8 @@ const [reviewData, setReviewData] = useState({
         <label>
           Reseña:
           <textarea
-            name="textoResena"
-            value={reviewData.textoResena}
+            name="textoResenia"
+            value={reviewData.textoResenia}
             onChange={handleChange}
             placeholder="Escribe tu reseña aquí..."
             required
