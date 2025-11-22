@@ -1,0 +1,75 @@
+.game-reviews-container {
+  padding: 40px;
+  color: #fff;
+  background: linear-gradient(135deg, #0a1a3f, #1b2e5a);
+  min-height: 100vh;
+}
+
+.volver-btn {
+  background-color: #1b2e5a;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+.volver-btn:hover {
+  background-color: #2f4c8c;
+}
+
+.titulo-reseñas {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+}
+
+.reseñas-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.reseña-card {
+  background-color: #102449;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.reseña-card:hover {
+  transform: translateY(-5px);
+}
+
+.reseña-card h3 {
+  margin-bottom: 8px;
+  color: #9fd1ff;
+}
+
+.añadir-reseña-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 16px 0;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.añadir-reseña-btn:hover {
+  background-color: #3730a3;
+  transform: translateY(-2px);
+}
+
+.icono-btn {
+  font-size: 18px;
+}
+

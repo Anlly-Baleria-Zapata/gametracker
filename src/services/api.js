@@ -1,91 +1,128 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_BASE_URL = 'https://6910e25e7686c0e9c20bfa0f.mockapi.io'; // Replace with your actual API base URL
+export const API = axios.create({
+  baseURL: "http://localhost:4000", // apunta al backend
+});
+
+// ======================
+// === JUEGOS / GAMES ===
+// ======================
 
 export const fetchGames = async () => {
-    try {
-        const response = await axios.get(`${API_BASE_URL}/games`);
-        return response.data;
-    } catch (error) {
-        console.error('Error fetching games:', error);
-        throw error;
-    }
+  const res = await API.get("/games"); // se conecta con GET http://localhost:4000/api/games
+  return res.data;
 };
 
-export const fetchGameDetails = async (gameId) => {
-    try {
-        const response = await axios.get(`${API_BASE_URL}/games/${gameId}`);
-        return response.data;
-    } catch (error) {
-        console.error('Error fetching game details:', error);
-        throw error;
-    }
+export const fetchGameDetails = async (id) => {
+  const res = await API.get(`/games/${id}`);
+  return res.data;
 };
+
 
 export const addGame = async (gameData) => {
-    try {
-        const response = await axios.post(`${API_BASE_URL}/games`, gameData);
-        return response.data;
-    } catch (error) {
-        console.error('Error adding game:', error);
-        throw error;
-    }
+  const res = await API.post("/games", gameData);
+  return res.data;
 };
 
 export const updateGame = async (gameId, gameData) => {
-    try {
-        const response = await axios.put(`${API_BASE_URL}/games/${gameId}`, gameData);
-        return response.data;
-    } catch (error) {
-        console.error('Error updating game:', error);
-        throw error;
-    }
+  const res = await API.put(`/games/${gameId}`, gameData);
+  return res.data;
 };
 
 export const deleteGame = async (gameId) => {
-    try {
-        await axios.delete(`${API_BASE_URL}/games/${gameId}`);
-    } catch (error) {
-        console.error('Error deleting game:', error);
-        throw error;
-    }
+  await API.delete(`/games/${gameId}`);
 };
 
-export const fetchReviews = async (gameId) => {
-    try {
-        const response = await axios.get(`${API_BASE_URL}/games/${gameId}/reviews`);
-        return response.data;
-    } catch (error) {
-        console.error('Error fetching reviews:', error);
-        throw error;
-    }
+// =========================
+// === RESEÑAS / REVIEWS ===
+// =========================
+
+export const fetchAllReviews = async () => {
+  const res = await API.get("/reviews");
+  return res.data;
 };
 
 export const addReview = async (gameId, reviewData) => {
-    try {
-        const response = await axios.post(`${API_BASE_URL}/games/${gameId}/reviews`, reviewData);
-        return response.data;
-    } catch (error) {
-        console.error('Error adding review:', error);
-        throw error;
-    }
+  // Construimos el body para enviar al backend
+  const body = {
+    juegoId: gameId,              // id del juego
+    puntuacion: reviewData.puntuacion,
+    textoResenia: reviewData.textoResena,
+    horasJugadas: Number(reviewData.horasJugadas), // asegurarse de que sea número
+    dificultad: reviewData.dificultad,
+    recomendaria: reviewData.recomendaria
+  };
+
+    return await API.post("/reviews", body);
 };
 
-export const updateReview = async (gameId, reviewId, reviewData) => {
-    try {
-        const response = await axios.put(`${API_BASE_URL}/games/${gameId}/reviews/${reviewId}`, reviewData);
-        return response.data;
-    } catch (error) {
-        console.error('Error updating review:', error);
-        throw error;
-    }
+export const updateReview = async (id, updatedData) => {
+  const res = await API.put(`/reviews/${id}`, updatedData);
+  return res.data;
 };
 
-export const deleteReview = async (gameId, reviewId) => {
-    try {
-        await axios.delete(`${API_BASE_URL}/games/${gameId}/reviews/${reviewId}`);
-    } catch (error) {
-        console.error('Error deleting review:', error);
-        throw error;
+export const deleteReview = async (id) => {
+  const res = await API.delete(`/reviews/${id}`);
+  return res.data;
+};
+
+// =========================
+// === RESEÑAS DE UN JUEGO ===
+// =========================
+export const fetchReviewsByGame = async (gameId) => {
+  const res = await API.get(`/reviews/game/${gameId}`);
+  return res.data;
+};
+
+// ==========================
+// === ESTADÍSTICAS / STATS ===
+// ==========================
+
+export const fetchGameInsights = async () => {
+  try {
+    const games = await fetchGames();
+    const reviews = await fetchAllReviews();
+
+    if (!games.length) return {};
+
+    // Planeta más brillante: juego con más reseñas
+    const planetaBrillante = games.reduce((prev, current) => {
+      const prevCount = reviews.filter(r => r.gameId === prev.id).length;
+      const currentCount = reviews.filter(r => r.gameId === current.id).length;
+      return currentCount > prevCount ? current : prev;
+    }, games[0]);
+
+    // Gigante azul: juego con más horas (si no hay horas, asumimos 0)
+    const giganteAzul = games.reduce((prev, current) => {
+      const prevHours = prev.horasJugadas || 0;
+      const currentHours = current.horasJugadas || 0;
+      return currentHours > prevHours ? current : prev;
+    }, games[0]);
+
+    // Planeta muerto: juego no completado con menos horas jugadas (opcional)
+    const planetasAbandonados = games.filter(g => !g.completado);
+    let planetaMuerto = null;
+    if (planetasAbandonados.length) {
+      planetaMuerto = planetasAbandonados.reduce((prev, current) => {
+        const prevHours = prev.horasJugadas || 0;
+        const currentHours = current.horasJugadas || 0;
+        return currentHours < prevHours ? current : prev;
+      }, planetasAbandonados[0]);
     }
+
+    // Nueva misión: juego recomendado (aleatorio entre no completados)
+    const nuevaMision = planetasAbandonados.length
+      ? planetasAbandonados[Math.floor(Math.random() * planetasAbandonados.length)]
+      : null;
+
+    return {
+      planetaBrillante,
+      giganteAzul,
+      planetaMuerto,
+      nuevaMision,
+    };
+  } catch (error) {
+    console.error("Error fetching game insights:", error);
+    throw error;
+  }
 };

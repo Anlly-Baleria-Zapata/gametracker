@@ -1,0 +1,108 @@
+.form-juego-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #142d5e;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.form-juego h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.form-juego label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  font-weight: 500;
+  color: white;
+}
+
+.form-juego input,
+.form-juego textarea,
+.form-juego select {
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.form-juego textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ------- SWITCH ------- */
+.switch-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.switch-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.switch-container input {
+  display: none;
+}
+
+.slider {
+  position: relative;
+  width: 50px;
+  height: 24px;
+  background-color: #d1d5db;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 2px;
+  top: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.switch-container input:checked + .slider {
+  background-color: #4f46e5;
+}
+
+.switch-container input:checked + .slider::before {
+  transform: translateX(26px);
+}
+
+.switch-text {
+  color: white;
+  font-weight: bold;
+}
+
+/* Botón */
+.guardar-btn {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.guardar-btn:hover {
+  background-color: #3730a3;
+}

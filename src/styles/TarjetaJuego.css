@@ -1,3 +1,4 @@
+/* === TARJETA === */
 .tarjeta-juego {
   position: relative;
   border-radius: 12px;
@@ -5,9 +6,9 @@
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
 
-  /* Tamaño fijo para todas las tarjetas */
-  width: 220px;      /* ancho fijo */
-  height: 320px;     /* altura fija */
+  width: 100%;
+  max-width: 250px; /* evita que sean demasiado grandes */
+  height: 250px;
 }
 
 .tarjeta-juego:hover {
@@ -15,7 +16,6 @@
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-/* Imagen de fondo ocupando toda la tarjeta */
 .tarjeta-juego__imagen {
   width: 100%;
   height: 100%;
@@ -23,7 +23,6 @@
   display: block;
 }
 
-/* Barra inferior semitransparente */
 .tarjeta-juego__info {
   position: absolute;
   bottom: 0;
@@ -35,10 +34,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px; /* separación entre título y botón */
+  gap: 6px;
 }
 
-/* Título arriba del botón */
 .tarjeta-juego__titulo {
   font-size: 16px;
   font-weight: bold;
@@ -46,7 +44,6 @@
   text-align: center;
 }
 
-/* Botón */
 .tarjeta-juego__boton {
   background-color: #4f46e5;
   color: white;
@@ -62,11 +59,59 @@
   transform: translateY(-2px);
 }
 
-/* Grid de 4 tarjetas por fila */
+/* === GRID RESPONSIVE === */
 .biblioteca-juegos .juegos-lista {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
   gap: 20px;
-  justify-content: center; /* centra la cuadrícula */
   padding: 20px 0;
 }
+
+/* 📱 Móviles: 1 columna */
+@media (max-width: 480px) {
+  .biblioteca-juegos .juegos-lista {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .tarjeta-juego {
+    max-width: 260px;
+    height: 340px;
+  }
+}
+
+/* 📱 Tablets pequeñas: 2 columnas */
+@media (max-width: 768px) {
+  .biblioteca-juegos .juegos-lista {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 💻 Laptops: 3 columnas */
+@media (max-width: 1024px) {
+  .biblioteca-juegos .juegos-lista {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tarjeta-juego__botones {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.tarjeta-juego__icono {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tarjeta-juego__icono:hover {
+  color: #000;
+}
+
+/* 🖥️ Pantallas grandes: 4 columnas (por defecto) */

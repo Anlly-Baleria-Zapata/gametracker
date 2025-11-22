@@ -17,7 +17,7 @@ const Layout = () => {
           <Link to="/reviews" className={`sidebar-item ${location.pathname === "/reviews" ? "active" : ""}`}>
             <FaListAlt className="sidebar-icon" /> Lista de Reseñas
           </Link>
-          <Link to="/edit-review/:id" className={`sidebar-item ${location.pathname.includes("/edit-review") ? "active" : ""}`}>
+          <Link to="/add-review/:id" className={`sidebar-item ${location.pathname.includes("/edit-review") ? "active" : ""}`}>
             <FaPenFancy className="sidebar-icon" /> Formulario Reseña
           </Link>
           <Link to="/add-game" className={`sidebar-item ${location.pathname === "/add-game" ? "active" : ""}`}>

@@ -7,8 +7,10 @@ import FormularioJuego from "./components/FormularioJuego";
 import ListaResenas from "./components/ListaResenas";
 import FormularioResena from "./components/FormularioResena";
 import EstadisticasPersonales from "./components/EstadisticasPersonales";
+import GameReviews from "./components/GameReviews";
 import GameDetails from "./pages/GameDetails";
 import Wishlist from "./pages/Wishlist";
+import DashboardEstadisticas from "./pages/DashboardEstadisticas";
 
 const App = () => {
   return (
@@ -21,9 +23,11 @@ const App = () => {
           <Route path="add-game" element={<FormularioJuego />} />
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="reviews" element={<ListaResenas />} />
-          <Route path="edit-review/:id" element={<FormularioResena />} />
+          <Route path="add-review/:id" element={<FormularioResena />} />
           <Route path="statistics" element={<EstadisticasPersonales />} />
           <Route path="game/:id" element={<GameDetails />} />
+          <Route path="/game/:id/reviews" element={<GameReviews />} />
+          <Route path="dashboard" element={<DashboardEstadisticas />} />
         </Route>
 
         {/* Página de error */}

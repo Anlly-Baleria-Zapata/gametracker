@@ -1,54 +1,84 @@
-/* Estilos para el componente EstadisticasPersonales */
-/* Asume que variables.css y global.css ya se importan en main.jsx */
-
-.estadisticas {
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 16px;
-  width: 100%;
-}
-
-.stats-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
-}
-
-.stat-card {
-  padding: 12px;
-  border-radius: 10px;
-  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  text-align: left;
-  border: 1px solid rgba(255,255,255,0.02);
-  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
-}
-
-.stat-value {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--text);
-}
-
-.stat-label {
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 6px;
-}
-
-.chart {
-  height: 220px;
-  border-radius: 10px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+.galaxy-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  border: 1px solid rgba(255,255,255,0.02);
+  gap: 50px;
+  padding: 20px;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .estadisticas {
-    grid-template-columns: 1fr;
+.galaxy-view {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle at center, #000 0%, #111 100%);
+  border-radius: 50%;
+  overflow: visible;
+}
+
+.sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin: -25px;
+  background: yellow;
+  border-radius: 50%;
+  box-shadow: 0 0 30px yellow;
+}
+
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--orbit-radius);
+  height: var(--orbit-radius);
+  margin-left: calc(-1 * var(--orbit-radius) / 2);
+  margin-top: calc(-1 * var(--orbit-radius) / 2);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: spin 20s linear infinite;
+}
+
+.planet-body {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: var(--planet-size);
+  height: var(--planet-size);
+  margin-top: calc(-1 * var(--planet-size) / 2);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  text-align: left;
+  z-index: 10;
+}
+
+.planet-body:hover .tooltip {
+  display: block;
+}
+
+.insights {
+  max-width: 300px;
+  color: #fff;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

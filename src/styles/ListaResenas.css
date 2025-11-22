@@ -1,0 +1,65 @@
+/* ListaResenas.css */
+
+/* Contenedor general */
+.lista-resenas {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Título */
+.lista-resenas h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #4f46e5; /* morado bonito */
+}
+
+/* Grid para las tarjetas */
+.lista-resenas .resena-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin-bottom: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.lista-resenas .resena-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Texto de la reseña */
+.texto-reseña {
+  font-style: italic;
+  margin: 10px 0;
+  color: #333333;
+}
+
+/* Información importante */
+.resena-card p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: #555555;
+}
+
+/* Puntuación */
+.resena-card strong {
+  color: #111827;
+}
+
+/* Responsive: grid cuando quieras varias columnas */
+@media (min-width: 600px) {
+  .lista-resenas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (min-width: 900px) {
+  .lista-resenas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
