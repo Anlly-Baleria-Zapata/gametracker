@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaPlusSquare } from "react-icons/fa";
+import { FaPlusSquare, FaEdit } from "react-icons/fa";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchGameDetails, fetchReviewsByGame } from "../services/api";
 import "../styles/GameReviews.css";
@@ -89,6 +89,12 @@ const GameReviews = () => {
         <div className="reseñas-lista">
           {resenias.map((r) => (
             <div key={r._id} className="reseña-card">
+                <button 
+                  className="edit-btn" 
+                  onClick={() => onEdit(r)}
+                >
+                  <FaEdit size={18}/>
+                </button>
               <p><strong>Puntuación:</strong> ⭐ {r.puntuacion}/100</p>
               <p className="texto-reseña">"{r.textoResenia}"</p>
               <p><strong>Dificultad:</strong> {r.dificultad}</p>

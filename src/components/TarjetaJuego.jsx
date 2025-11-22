@@ -7,7 +7,7 @@ const TarjetaJuego = ({ juego }) => {
   const navigate = useNavigate();
 
   const handleVerDetalles = () => {
-    navigate(`/game/${juego.id}/reviews`);
+    navigate(`/game/${juego._id}/reviews`);
   };
 
   const handleEditarResena = () => {

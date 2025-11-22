@@ -13,8 +13,8 @@ export const fetchGames = async () => {
   return res.data;
 };
 
-export const fetchGameDetails = async (id) => {
-  const res = await API.get(`/games/${id}`);
+export const fetchGameDetails = async (gameId) => {
+  const res = await API.get(`/games/${gameId}`);
   return res.data;
 };
 
@@ -47,7 +47,7 @@ export const addReview = async (gameId, reviewData) => {
   const body = {
     juegoId: gameId,              // id del juego
     puntuacion: reviewData.puntuacion,
-    textoResenia: reviewData.textoResena,
+    textoResenia: reviewData.textoResenia,
     horasJugadas: Number(reviewData.horasJugadas), // asegurarse de que sea número
     dificultad: reviewData.dificultad,
     recomendaria: reviewData.recomendaria

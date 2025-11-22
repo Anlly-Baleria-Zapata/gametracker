@@ -73,3 +73,24 @@
   font-size: 18px;
 }
 
+.reseña-card {
+  position: relative;
+}
+
+.edit-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  transition: 0.2s;
+}
+
+.edit-btn:hover {
+  color: #000;
+  transform: scale(1.1);
+}
+
+
